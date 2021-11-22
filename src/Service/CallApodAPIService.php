@@ -23,7 +23,13 @@ class CallApodAPIService
 
         $response = $this->httpClient->request(
             'GET',
-            "https://api.nasa.gov/planetary/apod?api_key=" . $this->apod_api_key . "&date=$date"
+            'https://api.nasa.gov/planetary/apod',
+            [
+                'query' => [
+                    'api_key' => $this->apod_api_key,
+                    'date'    => $date
+                ]
+            ]
         );
 
         return $response->toArray();
