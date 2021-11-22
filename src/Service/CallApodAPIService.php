@@ -2,21 +2,27 @@
 
 namespace App\Service;
 
-use DateTime;
+use App\Entity\Media;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class CallApodAPIService
 {
-    private $httpClient;
     private $apod_api_key;
+    private $httpClient;
+    private $serializer;
 
-    public function __construct(string $apod_api_key, HttpClientInterface $httpClient)
-    {
-        $this->httpClient = $httpClient;
+    public function __construct(
+        string $apod_api_key,
+        HttpClientInterface $httpClient,
+        SerializerInterface $serializer
+    ) {
         $this->apod_api_key = $apod_api_key;
+        $this->httpClient = $httpClient;
+        $this->serializer = $serializer;
     }
 
-    public function getPictureOfTheDay(string $date = null): array
+    public function getMediaOfTheDay($format = 'json', string $date = null)
     {
         // If no date is provided, $date = today
         if (!$date) $date = date("Y-m-d");
@@ -32,6 +38,14 @@ class CallApodAPIService
             ]
         );
 
-        return $response->toArray();
+        return ($format == 'json') ? $response->getContent() : $response->toArray();
+    }
+
+    public function createMediaFromAPOD(string $date = null): Media
+    {
+        $data = $this->getMediaOfTheDay('json', $date);
+        $media = $this->serializer->deserialize($data, Media::class, 'json');
+
+        return $media;
     }
 }
