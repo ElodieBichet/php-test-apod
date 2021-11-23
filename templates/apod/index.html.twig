@@ -5,25 +5,30 @@
 {% endblock %}
 
 {% block body %}
-	<div class="wrapper">
+	<header>
 		<h1>Astronomy Photo of the Day</h1>
+		{% if app.user %}
+			<p class="logout">
+				<a href="{{ path('security_logout') }}" title="logout">Logout</a>
+			</p>
+		{% endif %}
+	</header>
 
-		<h2>{{ picture.title }}
-			<time datetime="{{ picture.date | date('Y-m-d') }} 00:00:00">{{ picture.date | date('d/m/Y') }}
-			</time>
-		</h2>
+	<h2>{{ picture.title }}
+		<time datetime="{{ picture.date | date('Y-m-d') }} 00:00:00">{{ picture.date | date('d/m/Y') }}
+		</time>
+	</h2>
 
-		<main>
-			<figure>
-				<img src="{{ picture.url }}" alt="{{ picture.title }}">
-				{% if picture.copyright %}
-					<figcaption>&copy;
-						{{ picture.copyright }}</figcaption>
-				{% endif %}
-			</figure>
-			{% if picture.explanation %}
-				<p>{{ picture.explanation }}</p>
+	<main>
+		<figure>
+			<img src="{{ picture.url }}" alt="{{ picture.title }}">
+			{% if picture.copyright %}
+				<figcaption>&copy;
+					{{ picture.copyright }}</figcaption>
 			{% endif %}
-		</main>
-	</div>
+		</figure>
+		{% if picture.explanation %}
+			<p>{{ picture.explanation }}</p>
+		{% endif %}
+	</main>
 {% endblock %}

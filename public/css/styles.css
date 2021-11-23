@@ -8,6 +8,10 @@ body {
     padding: 1rem;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+}
 h1 {
     color: rgb(221, 28, 75);
 }
