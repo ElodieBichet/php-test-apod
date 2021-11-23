@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\MediaRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApodController extends AbstractController
@@ -17,7 +18,8 @@ class ApodController extends AbstractController
     }
 
     /**
-     * @Route("/apod", name="apod")
+     * @Route("/", name="apod")
+     * @IsGranted("ROLE_USER", message="You have to be authenticated to see this page")
      */
     public function show(): Response
     {

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<h1>Login</h1>
+	<h2>Please login to see the photo of the day:</h2>
+	{# Security errors alerts #}
+	{% if error is defined and error %}
+		<p class="error">
+			<strong>Error!</strong>
+			{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+	{% endif %}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button type="submit">Connection</button>
+	{{ form_end(form) }}
+
+{% endblock %}
