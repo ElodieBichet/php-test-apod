@@ -1,24 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Picture of the Day
+{% block title %}Photo of the Day -
+	{{ parent() }}
 {% endblock %}
 
 {% block body %}
-	<div class="main-wrapper">
+	<div class="wrapper">
 		<h1>Astronomy Photo of the Day</h1>
 
 		<h2>{{ picture.title }}
-			<small>{{ picture.date | date('d/m/Y') }}
-			</small>
+			<time datetime="{{ picture.date | date('Y-m-d') }} 00:00:00">{{ picture.date | date('d/m/Y') }}
+			</time>
 		</h2>
 
-		<div>
+		<main>
 			<figure>
 				<img src="{{ picture.url }}" alt="{{ picture.title }}">
 				<figcaption>&copy;
 					{{ picture.copyright }}</figcaption>
 			</figure>
 			<p>{{ picture.explanation }}</p>
-		</div>
+		</main>
 	</div>
 {% endblock %}
