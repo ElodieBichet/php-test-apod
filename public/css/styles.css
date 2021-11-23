@@ -25,3 +25,21 @@ figure {
 img {
     width: 100%;
 }
+
+form #login .form-group {
+    max-width: 30em;
+    display: flex;
+    justify-content: space-between;
+    margin: .5em 0;
+}
+form #login .form-group > label {
+    width: 8em;
+}
+form #login .form-group > input {
+    flex-grow: 1;
+    margin-left: .5em;
+}
+
+.error {
+    color: red;
+}

@@ -16,10 +16,14 @@
 		<main>
 			<figure>
 				<img src="{{ picture.url }}" alt="{{ picture.title }}">
-				<figcaption>&copy;
-					{{ picture.copyright }}</figcaption>
+				{% if picture.copyright %}
+					<figcaption>&copy;
+						{{ picture.copyright }}</figcaption>
+				{% endif %}
 			</figure>
-			<p>{{ picture.explanation }}</p>
+			{% if picture.explanation %}
+				<p>{{ picture.explanation }}</p>
+			{% endif %}
 		</main>
 	</div>
 {% endblock %}
