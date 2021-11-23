@@ -17,7 +17,7 @@ class ApodController extends AbstractController
     }
 
     /**
-     * @Route("/apod", name="apod")
+     * @Route("/", name="apod")
      */
     public function show(): Response
     {
