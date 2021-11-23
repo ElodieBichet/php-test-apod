@@ -22,7 +22,7 @@
         "symfony/form": "5.2.*",
         "symfony/framework-bundle": "5.2.*",
         "symfony/http-client": "5.2.*",
-        "symfony/phpunit-bridge": "^5.3",
+        "symfony/phpunit-bridge": "5.2",
         "symfony/property-access": "5.2.*",
         "symfony/property-info": "5.2.*",
         "symfony/proxy-manager-bridge": "5.2.*",
@@ -84,6 +84,7 @@
         }
     },
     "require-dev": {
+        "liip/test-fixtures-bundle": "2.0.0",
         "symfony/maker-bundle": "^1.36",
         "symfony/stopwatch": "5.2.*",
         "symfony/web-profiler-bundle": "5.2.*"
