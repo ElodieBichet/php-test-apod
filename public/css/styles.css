@@ -1,0 +1,27 @@
+body {
+    font-family: Montserrat,sans-serif;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+h1 {
+    color: rgb(221, 28, 75);
+}
+
+h2 time {
+    font-size: 1rem;
+}
+
+figure {
+    margin: 0;
+    padding: 2rem;
+    border: 1px solid #CCC;
+}
+
+img {
+    width: 100%;
+}
