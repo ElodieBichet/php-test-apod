@@ -22,7 +22,15 @@ class CallApodAPIService
         $this->serializer = $serializer;
     }
 
-    public function getMediaOfTheDay($format = 'json', string $date = null)
+    /**
+     * getMediaOfTheDay
+     * Get the APOD from the Nasa API and return it as Json string or array
+     *
+     * @param  string $format
+     * @param  string $date
+     * @return string|array
+     */
+    public function getMediaOfTheDay(?string $format = 'json', ?string $date = null)
     {
         // If no date is provided, $date = today
         if (!$date) $date = date("Y-m-d");
@@ -41,6 +49,13 @@ class CallApodAPIService
         return ($format == 'json') ? $response->getContent() : $response->toArray();
     }
 
+    /**
+     * createMediaFromAPOD
+     * Get the json response from the Nasa API request and return it as a Media
+     *
+     * @param  string $date
+     * @return Media
+     */
     public function createMediaFromAPOD(string $date = null): Media
     {
         $data = $this->getMediaOfTheDay('json', $date);
