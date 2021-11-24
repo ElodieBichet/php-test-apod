@@ -19,7 +19,7 @@ Please read [Readme file](README.md) first to understand the context of this app
   * [Configure PHP Unit](#configure-php-unit)
   * [Run the tests](#run-the-tests)
 
-## __TECHNOLOGIES
+## TECHNOLOGIES
 
 ### __Server__
 You need a web server with PHP7 (> 7.2.5) and MySQL.  
