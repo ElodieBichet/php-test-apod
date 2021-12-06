@@ -15,37 +15,37 @@ class Media
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private string $title;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $date;
+    private string $date;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $media_type;
+    private string $media_type;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $url;
+    private string $url;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $explanation;
+    private string $explanation;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $copyright;
+    private string $copyright;
 
     public function getId(): ?int
     {
