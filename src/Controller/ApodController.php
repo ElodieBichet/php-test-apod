@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\MediaRepository;
+use App\Manager\MediaManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -10,11 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ApodController extends AbstractController
 {
-    protected $mediaRepository;
+    protected $mediaManager;
 
-    public function __construct(MediaRepository $mediaRepository)
+    public function __construct(MediaManager $mediaManager)
     {
-        $this->mediaRepository = $mediaRepository;
+        $this->mediaManager = $mediaManager;
     }
 
     /**
@@ -23,7 +23,7 @@ class ApodController extends AbstractController
      */
     public function show(): Response
     {
-        $picture = $this->mediaRepository->findOneBy(['media_type' => 'image'], ['date' => 'DESC']);
+        $picture = $this->mediaManager->findLastImageMedia();
 
         return $this->render('apod/index.html.twig', [
             'picture' => $picture

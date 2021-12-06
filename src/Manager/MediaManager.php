@@ -18,4 +18,9 @@ class MediaManager
     {
         return $this->mediaRepository->findOneBy(['date' => $date]);
     }
+
+    public function findLastImageMedia(): ?Media
+    {
+        return $this->mediaRepository->findOneBy(['media_type' => 'image'], ['date' => 'DESC']);
+    }
 }
