@@ -3,33 +3,32 @@
 namespace App\Command;
 
 use App\Entity\Media;
-use App\Repository\MediaRepository;
+use App\Manager\MediaManager;
 use App\Service\CallApodAPIService;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class AddApodInDbCommand extends Command
 {
-    private $entityManager;
-    private $mediaRepository;
-    private $callApodAPIService;
+    private EntityManagerInterface $entityManager;
+    private MediaManager $mediaManager;
+    private CallApodAPIService $callApodAPIService;
 
     protected static $defaultName = 'app:add-apod-in-db';
     protected static $defaultDescription = 'Add a short description for your command';
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        MediaRepository $mediaRepository,
+        MediaManager $mediaManager,
         CallApodAPIService $callApodAPIService
     ) {
         $this->entityManager = $entityManager;
-        $this->mediaRepository = $mediaRepository;
+        $this->mediaManager = $mediaManager;
         $this->callApodAPIService = $callApodAPIService;
 
         parent::__construct();
@@ -54,7 +53,7 @@ class AddApodInDbCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $date = $input->getArgument('date');
 
-        $search = $this->mediaRepository->findOneBy(['date' => $date]);
+        $search = $this->mediaManager->findOneByDate($date);
         $media = $this->callApodAPIService->createMediaFromAPOD($date);
 
         if ($search && $input->getOption('replace')) {
@@ -62,6 +61,7 @@ class AddApodInDbCommand extends Command
             $this->entityManager->flush();
         }
         if (!$search || $input->getOption('replace')) {
+            // dd($media);
             $this->entityManager->persist($media);
         }
 
