@@ -56,7 +56,7 @@ class CallApodAPIService
      * @param  string $date
      * @return Media
      */
-    public function createMediaFromAPOD(string $date = null): Media
+    public function createMediaFromAPOD(?string $date = null): Media
     {
         $data = $this->getMediaOfTheDay('json', $date);
         $media = $this->serializer->deserialize($data, Media::class, 'json');
