@@ -9,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class MediaFixtures extends Fixture
 {
-    protected $callApodAPIService;
+    protected CallApodAPIService $callApodAPIService;
 
     public function __construct(CallApodAPIService $callApodAPIService)
     {
